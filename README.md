@@ -94,7 +94,23 @@ yarn preview
 
 ![mysql](/img/p6.png)
 
+下载BERT模型：
 
+因为文件过大，不能上传仓库，因此需要你自己现在模型，安装下面步骤进行：
+
+![bert](/img/p7.png)
+
+Hugging Face下载网址：[Hugging Face](https://huggingface.co/)
+
+步骤一：
+
+![1](/img/p8.png)
+
+步骤二：
+
+![2](/img/p9.png)
+
+最后将下载好的**pytorch_model.bin**放入Bert-Base-Chinese文件夹下。
 
 ## 系统架构
 
