@@ -8,8 +8,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/homework_check?serverTimezone=Hongkong&useAffectedRows=true&characterEncoding=utf-8
-    username: root                        #数据库用户 名
-    password: abc123                      #数据库密码
+    username: your_username                    #数据库用户 名
+    password: your_password                      #数据库密码
     type: com.alibaba.druid.pool.DruidDataSource
     initialSize: 5                        # 初始化时创建的连接数
     minIdle: 5                            # 最小空闲连接数
