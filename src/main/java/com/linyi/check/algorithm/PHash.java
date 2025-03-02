@@ -14,9 +14,6 @@ import java.io.InputStream;
  * @Description: PHash图片哈希值计算
  */
 public class PHash {
-    public static void main(String[] args) {
-    }
-    
     /**
      * 计算平均值(只保留左上角8*8)，获得特征hash值
      *
