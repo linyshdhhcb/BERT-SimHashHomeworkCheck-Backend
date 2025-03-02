@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 public class Jaccard {
 
     public static void main(String[] args) {
-        String s1 = "我我我我我我我我我我我我我我我喜欢文学，喜欢地理，也喜欢化学";
-        String s2 = "我不喜欢文学，喜欢化学";
+        String s1 = "我是一名后端开发程序员";
+        String s2 = "我非常喜欢前端开发";
 
         List<String> list1 = StandardTokenizer.segment(s1).stream().map(term -> term.word).collect(Collectors.toList());
         List<String> list2 = StandardTokenizer.segment(s2).stream().map(term -> term.word).collect(Collectors.toList());
