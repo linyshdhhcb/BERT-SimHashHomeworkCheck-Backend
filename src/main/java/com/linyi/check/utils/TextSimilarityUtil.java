@@ -15,7 +15,7 @@ import static com.linyi.check.algorithm.SimHash.cleanResume;
  * @Date: 2025/2/28
  * @ClassName: TextSimilarityUtil
  * @Version: 1.0
- * @Description:
+ * @Description: 文本相似度计算工具类
  */
 public class TextSimilarityUtil {
     public static double computeTextSimilarity(String text1, String text2) throws Exception {
