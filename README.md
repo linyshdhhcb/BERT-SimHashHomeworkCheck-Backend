@@ -1,37 +1,131 @@
 # 基于 SimHash 与 BERT 的高校学生作业查重系统
 
-​	该项目旨在通过结合 **SimHash** 算法与 **BERT-Base-Chinese** 模型，实现对高校学生作业的智能查重，支持文件批量处理与历史作业比对，自动生成查重结果的 Excel 报告。系统基于 Spring Boot 构建，采用 MySQL 存储数据，并集成多种第三方工具（如 EasyExcel、HanLP、Apache POI 等）实现文件解析、文本分词、相似度计算以及结果输出。
+​	该项目旨在通过结合 **SimHash** 算法与 **BERT-Base-Chinese** 模型，实现对高校学生作业的智能查重，支持文件批量处理与历史作业比对，自动生成查重结果的 Excel 报告。系统后端基于 Spring Boot 构建，采用 MySQL 存储数据，并集成多种第三方工具（如 EasyExcel、HanLP、Apache POI 等）实现文件解析、文本分词、相似度计算以及结果输出；系统前端基于 Vue3、Pinia、Element Plus、Axios、Vite、Sass 等前端框架实现交互与展示。
+
+## 项目地址
+
+### 前端项目
+
+- **Gitee**: [BERT-SimHashHomeworkCheck-Frontend (Gitee)](https://gitee.com/yourusername/BERT-SimHashHomeworkCheck-Frontend)
+- **GitHub**: [BERT-SimHashHomeworkCheck-Frontend (GitHub)](https://github.com/linyshdhhcb/BERT-SimHashHomeworkCheck-Frontend)
+
+### 后端项目
+
+- **Gitee**: [BERT-SimHashHomeworkCheck-Backend (Gitee)](https://gitee.com/hsdchb/bert-sim-hash-homework-check)
+- **GitHub**: [BERT-SimHashHomeworkCheck-Backend (GitHub)](https://github.com/yourusername/BERT-SimHashHomeworkCheck-Backend)
+
+---
+
+### 
 
 ## 项目特点
 
 1. **多维度相似度检测：**
-	使用多种相似度算法，包括 Jaccard 相似度、海明距离、Hash 相似度、余弦相似度、图片相似度以及加权相似度，从多个角度精准评估文件间相似性。
+   使用多种相似度算法，包括 Jaccard 相似度、海明距离、Hash 相似度、余弦相似度、图片相似度以及加权相似度，从多个角度精准评估文件间相似性。
 2. **批量查重：**
-	- 支持单次输入一个文件夹路径，对所有作业文件进行查重，并将结果导出为 Excel 文件。
-	- 支持指定“今年作业文件夹”和“去年作业文件夹”，实现今年每个文件与往年所有文件的两两对比，并自动生成查重结果的 Excel 报告。
+    - 支持单次输入一个文件夹路径，对所有作业文件进行查重，并将结果导出为 Excel 文件。
+    - 支持指定“今年作业文件夹”和“去年作业文件夹”，实现今年每个文件与往年所有文件的两两对比，并自动生成查重结果的 Excel 报告。
 3. **完善的 CRUD 操作：**
-	基于 MySQL 构建两个主要数据表（`similarity_outcome` 与 `files`），提供文件信息管理和查重结果存储，方便后续数据查询与管理。
+   基于 MySQL 构建两个主要数据表（`similarity_outcome` 与 `files`），提供文件信息管理和查重结果存储，方便后续数据查询与管理。
 4. **高性能与并发处理：**
-	项目依赖 Guava 等多线程支持库，实现高效的并发处理，适用于大批量文件的查重任务。
+   项目依赖 Guava 等多线程支持库，实现高效的并发处理，适用于大批量文件的查重任务。
 
-## 系统架构
+## 项目启动
+
+### 前端
+
+---
+
+#### 安装与运行
+
+确保已安装 Node.js（我使用的是：v18.20.5版本） 和 npm/yarn，然后执行以下命令安装项目依赖：
+
+```bash
+npm install
+# 或
+yarn install
+```
+
+启动本地开发服务器：
+
+```bash
+npm run dev
+# 或
+yarn dev
+```
+
+默认访问地址：http://localhost:5137
+
+构建生产环境代码：
+
+```bash
+npm run build
+# 或
+yarn build
+```
+
+在构建完成后，可以使用以下命令预览生产环境：
+
+```bash
+npm run preview
+# 或
+yarn preview
+```
+
+#### 效果
+
+![首页](/img/p1.png)
+
+![作业查重](/img/p2.png)
+
+![历史作业](/img/p3.png)
 
 ### 后端
 
-项目整体采用 **Spring Boot** 框架，主要模块包括：
+---
+
+#### 安装与运行
+
+先运行sql文件：
+
+![sql](/img/p4.png)
+
+修改.yml的数据库配置：
+
+![mysql](/img/p6.png)
+
+
+
+## 系统架构
+
+项目后端采用 **Spring Boot** 框架，前端采用 **Vue3** 主要模块包括：
 
 - **文件解析模块：**
-	利用 Apache PDFBox、Jsoup 等工具解析 PDF、HTML、TXT 等格式文件，提取文本内容。
+  利用 Apache PDFBox、Jsoup 等工具解析 PDF、HTML、TXT 等格式文件，提取文本内容。
 - **预处理与特征提取：**
-	利用 HanLP 对文本进行分词处理，并结合 BERT 模型生成文本特征向量，同时使用 SimHash 算法计算文档指纹。
+  利用 HanLP 对文本进行分词处理，并结合 BERT 模型生成文本特征向量，同时使用 SimHash 算法计算文档指纹。
 - **相似度计算模块：**
-	综合计算 Jaccard、海明距离、余弦、Hash 等多种相似度指标，并依据一定的加权规则，最终生成查重结果。
+  综合计算 Jaccard、海明距离、余弦、Hash 等多种相似度指标，并依据一定的加权规则，最终生成查重结果。
 - **数据存储与管理：**
-	使用 MySQL 存储文件信息（表 `files`）及查重结果（表 `similarity_outcome`），支持数据的增删改查操作。
+  使用 MySQL 存储文件信息（表 `files`）及查重结果（表 `similarity_outcome`），支持数据的增删改查操作。
 - **结果输出模块：**
-	通过 EasyExcel 将查重结果生成标准 Excel 文件，方便用户查阅与统计。
+  通过 EasyExcel 将查重结果生成标准 Excel 文件，方便用户查阅与统计。
 
 ### 环境依赖与构建
+
+### 前端
+
+| 技术名称      | 版本         | 描述                                                         |
+| ------------- | ------------ | ------------------------------------------------------------ |
+| **框架**      | Vue 3        | 基于组件的现代化前端框架，支持组合式 API 和响应式系统。      |
+| **状态管理**  | Pinia        | 轻量级、模块化的状态管理库，专为 Vue 3 设计，提供更好的开发体验。 |
+| **路由管理**  | Vue Router   | 提供动态路由和视图切换功能，支持嵌套路由和导航守卫。         |
+| **UI 组件库** | Element Plus | 基于 Vue 3 的 UI 组件库，提供丰富的组件和主题定制选项。      |
+| **HTTP 请求** | Axios        | 基于 Promise 的 HTTP 客户端，支持浏览器和 Node.js 环境，用于与后端进行数据交互。 |
+| **开发工具**  | Vite         | 新一代前端构建工具，快速冷启动和热更新，优化开发体验。       |
+|               | ESLint       | 代码检查工具，帮助开发者遵循一致的代码风格并发现潜在问题。   |
+|               | Sass         | 强大的 CSS 预处理器，支持变量、嵌套、混合等功能，提升样式编写效率。 |
+
 
 项目基于 Maven 构建，主要依赖如下（具体版本请参考 `pom.xml`）：
 
@@ -60,11 +154,6 @@
 | **MyBatis Plus **                         | 3.5.8-001      | 集成 MyBatis Plus，实现简化数据库 CRUD 操作及增强 SQL 功能   |
 | **Fastjson**                              | 2.0.21         | 高性能 JSON 处理库，实现对象与 JSON 数据间的快速转换         |
 | **Lombok**                                | （自动配置）   | 通过注解减少样板代码，提高开发效率，自动生成 getter、setter 等方法 |
-
-### 前端
-
-
-
 
 
 ## 数据库设计
@@ -116,14 +205,14 @@
 ## 使用说明
 
 1. **接口调用**
-	系统提供基于 REST 的 API 接口（借助 Knife4j 可自动生成在线文档），支持文件信息管理、查重操作请求、结果查询等功能。具体接口请参考生成的 API 文档。
+   系统提供基于 REST 的 API 接口（借助 Knife4j 可自动生成在线文档），支持文件信息管理、查重操作请求、结果查询等功能。具体接口请参考生成的 API 文档。
 2. **文件查重**
-	- **单文件夹查重：**
-		输入作业文件所在的文件夹路径，系统会自动解析所有文件，计算各项相似度指标，并将查重结果导出为 Excel 文件。
-	- **历史作业比对：**
-		输入今年和往年作业的文件夹路径，系统将针对今年的每个文件，与往年所有文件进行比对，最终生成包含详细对比结果的 Excel 文件。
+    - **单文件夹查重：**
+      输入作业文件所在的文件夹路径，系统会自动解析所有文件，计算各项相似度指标，并将查重结果导出为 Excel 文件。
+    - **历史作业比对：**
+      输入今年和往年作业的文件夹路径，系统将针对今年的每个文件，与往年所有文件进行比对，最终生成包含详细对比结果的 Excel 文件。
 3. **结果查看**
-	查重结果存储在 MySQL 数据库中，用户可以通过系统提供的查询接口或直接查询 `similarity_outcome` 表获取详细的比对数据。
+   查重结果存储在 MySQL 数据库中，用户可以通过系统提供的查询接口或直接查询 `similarity_outcome` 表获取详细的比对数据。
 
 ## 模型说明
 
@@ -141,5 +230,5 @@
 
 - 如有问题，可以有些邮箱联系我，也可以进行交流，项目不足之处，还请多多担待。
 
-	> **作者**: linyi **邮箱**: [jingshuihuayue@qq.com](https://gitee.com/link?target=mailto%3Ajingshuihuayue@qq.com)
-	> **GitHub**: [BERT-SimHashHomeworkCheck](https://github.com/linyshdhhcb/BERT-SimHashHomeworkCheck)
+  > **作者**: linyi **邮箱**: [jingshuihuayue@qq.com](https://gitee.com/link?target=mailto%3Ajingshuihuayue@qq.com)
+  > **GitHub**: [BERT-SimHashHomeworkCheck](https://github.com/linyshdhhcb/BERT-SimHashHomeworkCheck)
