@@ -1,0 +1,45 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: "BERT-SimHashHomeworkCheck"
+    description: "基于SimHash与BERT的高校学生作业查重系统"
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/homework_check?serverTimezone=Hongkong&useAffectedRows=true&characterEncoding=utf-8
+    username: root                        #数据库用户名
+    password: abc123                      #数据库密码
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5                        # 初始化时创建的连接数
+    minIdle: 5                            # 最小空闲连接数
+    maxActive: 20                         # 最大活跃连接数
+    testWhileIdle: true                   # 是否在空闲时测试连接的有效性
+    validationQuery: SELECT 1 FROM DUAL   # 验证连接的查询语句
+    timeBetweenEvictionRunsMillis: 60000  # 检查连接是否空闲的时间间隔
+    minEvictableIdleTimeMillis: 300000    # 连接在池中最小生存时间
+
+
+# mybatis-plus配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# knife4j的增强配置，不需要增强可以不配
+knife4j:
+  enable: true
+  api:
+    title: "基于SimHash与BERT的高校学生作业查重系统 API文档"
+    description: "基于SimHash与BERT的高校学生作业查重系统 API文档"
+    version: 1.0.0
+    contact:
+      name: linyi
+      email: linyi@example.com
+    license:
+      name: Apache 2.0
+      url: http://www.apache.org/licenses/LICENSE-2.0.html
+  setting:
+    language: zh_cn
+
+
